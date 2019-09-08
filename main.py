@@ -5,7 +5,7 @@ from flask import Flask, send_file, Response
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY').encode()
+# app.secret_key = os.environ.get('SECRET_KEY').encode()
 
 
 def get_fact():
@@ -23,11 +23,9 @@ def get_link(input):
     link_info = requests.post("http://hidden-journey-62459.herokuapp.com/piglatinize/", data = params , allow_redirects=False)
 
     result = link_info.headers['Location']
-    
     hyperlink_format = '<a href="{link}">{text}</a>'
-    hyperlink_format.format(link= result, text='HyperLink to Pig Latin:')    
 
-    return hyperlink_format.format(link= result, text='HyperLink to Pig Latin.') 
+    return hyperlink_format.format(link= result, text=result) 
 
 @app.route('/')
 def home():
